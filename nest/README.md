@@ -1,12 +1,13 @@
 # 개인 NestJS 공부
 <br>
 
-![image](https://github.com/MoonDongmin/my-study/assets/109586658/7e008337-d275-4e12-8670-d88dde945709)
-
 ### Java에는 Spring이 있고 Python에는 Diango가 있으면 Node에는 NestJS가있습니다. 여기서는 NestJS와 Node 객체지향 프로그래밍 및 디자인 패턴을 배우고 있습니다.
 
 ---
 ### 📌 Notion을 통해서 개인 공부한 것을 정리함
+### 📌 연구실 홈페이지 로그인 구현 프로젝트
+[Wisoft.io 홈페이지 로그인 구현 프로젝트](https://gitlab.com/wisoftlabs/member/dongmin/nest-project)
+- 코드는 깃랩에 작성함.
 
 [섹션 0. 첫 시작 ](https://www.notion.so/moondongmin/0-8e5272c6151b4dd180ab4c9ea7918d3d)
 - 섹션 0에서는 NestJS의 기본 설치 및 개념을 이해하는 섹션.
