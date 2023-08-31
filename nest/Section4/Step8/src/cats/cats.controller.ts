@@ -8,18 +8,27 @@ import {
     ParseIntPipe,
     Patch,
     Post,
-    Put,
-    UseFilters, UseInterceptors
+    Put, Req,
+    UseFilters, UseGuards, UseInterceptors
 } from '@nestjs/common';
 import {CatsService} from "./cats.service";
 import {HttpExceptionFilter} from "../common/exceptions/http-exception.filter";
-import {PositiveIntPipe} from "../common/pipes/positiveInt.pipe";
 import {SuccessInterceptor} from "../common/interceptors/success.interceptor";
 import {CatRequestDto} from "./dto/cat.request.dto";
 import {ApiOperation, ApiResponse} from "@nestjs/swagger";
 import {ReadOnlyCatDto} from "./dto/cat.dto";
 import {AuthService} from "../auth/auth.service";
 import {LoginRequestDto} from "../auth/dto/login.request.dto";
+import {JwtAuthGuard} from "../auth/jwt/jwt.guard";
+import {Request} from "express";
+import {CurrentUser} from "../common/decorators/user.decorator";
+import {Cat} from "./cats.schema";
+declare module "express" {
+    export interface Request {
+        user: any
+    }
+}
+
 
 @Controller('cats')
 @UseInterceptors(SuccessInterceptor)
@@ -31,9 +40,10 @@ export class CatsController {
     }
 
     @ApiOperation({summary: '현재 고양이 가져오기'})
+    @UseGuards(JwtAuthGuard)
     @Get()
-    gerCurrentCat() {
-        return 'current cat';
+    getCurrentCat(@CurrentUser() cat:Cat) {
+        return cat.readOnlyData;
     }
 
     @ApiResponse({
