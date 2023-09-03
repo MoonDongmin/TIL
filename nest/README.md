@@ -9,6 +9,8 @@
 [Wisoft.io 홈페이지 로그인 구현 프로젝트](https://gitlab.com/wisoftlabs/member/dongmin/nest-project)
 - 코드는 깃랩에 작성함.
 
+---
+
 [섹션 0. 첫 시작 ](https://www.notion.so/moondongmin/0-8e5272c6151b4dd180ab4c9ea7918d3d)
 - 섹션 0에서는 NestJS의 기본 설치 및 개념을 이해하는 섹션.
 
