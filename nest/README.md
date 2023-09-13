@@ -25,3 +25,6 @@
 
 [섹션 4. 프로젝트 1: 고양이 정보 커뮤니티](https://www.notion.so/moondongmin/4-1-a8209dfbb8eb4a209be18926f33fb1ef)
 - 섹션 4에서는 직접 웹을 만들어서 Backend 서비스를 구축하는 섹션.
+
+[섹션 5. 프로젝트 배포와 서버 운영](https://www.notion.so/moondongmin/5-5ae58a552f75453899af3572a41761e0)
+- 섹션 5에서는 AWS를 이용해여 만든 프로젝트를 배포하는 섹션.
