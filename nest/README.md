@@ -28,3 +28,6 @@
 
 [섹션 5. 프로젝트 배포와 서버 운영](https://www.notion.so/moondongmin/5-5ae58a552f75453899af3572a41761e0)
 - 섹션 5에서는 AWS를 이용해여 만든 프로젝트를 배포하는 섹션.
+
+[섹션 6. 프로젝트 2: 랜덤 채팅 웹 앱(풀스택, 소켓 프로그래밍)](https://www.notion.so/moondongmin/6-2-0f8ba51feab347a6bb414bef96cd2825)
+- 섹션 6에서는 랜덤 채팅 웹을 구현해보는 섹션.
