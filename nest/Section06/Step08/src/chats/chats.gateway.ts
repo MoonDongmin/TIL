@@ -77,7 +77,7 @@ export class ChatsGateway implements OnGatewayInit, OnGatewayConnection, OnGatew
 
         socket.broadcast.emit("new_chat", {
             chat,
-            username: socketObj.username,
+            username: socketObj,
         });
     }
 }

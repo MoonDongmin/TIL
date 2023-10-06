@@ -19,6 +19,9 @@ dist/
 node_modules/
 .env
 .env/
+.DS_Store/
+../.DS_Store/
+**/.DS_Store/
 # AWS User-specific
 .idea/**/aws.xml
 
