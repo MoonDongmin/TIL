@@ -11,6 +11,8 @@ import * as expressBasicAuth from 'express-basic-auth'
 import * as passport from 'passport'
 import * as cookieParser from 'cookie-parser'
 import { HttpApiExceptionFilter } from './common/exceptions/http-api-exception.filter'
+import * as expressSession from "express-session";
+
 
 class Application {
   private logger = new Logger(Application.name)
@@ -73,6 +75,13 @@ class Application {
         transform: true,
       }),
     )
+    this.server.use(
+        expressSession({
+          secret:'SECRET',
+          resave: true,
+          saveUninitialized: true,
+        }),
+    )
     this.server.use(passport.initialize())
     this.server.use(passport.session())
     this.server.useGlobalInterceptors(
@@ -102,9 +111,12 @@ class Application {
 async function init(): Promise<void> {
   const server = await NestFactory.create<NestExpressApplication>(AppModule)
   const app = new Application(server)
+
   await app.boostrap()
   app.startLog()
 }
+
+
 
 init().catch((error) => {
   new Logger('init').error(error)
