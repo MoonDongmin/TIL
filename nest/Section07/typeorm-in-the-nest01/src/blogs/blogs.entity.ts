@@ -1,4 +1,4 @@
-import {CommonEntity} from "../common/entities/common.entity"; // ormconfig.json에서 파싱 가능하도록 상대 경로로 지정
+import {CommonEntity}  from "../common/entities/common.entity"; // ormconfig.json에서 파싱 가능하도록 상대 경로로 지정
 import {
     Column,
     Entity,
@@ -7,13 +7,13 @@ import {
     ManyToMany,
     ManyToOne,
     OneToMany,
-} from "typeorm";
+}                      from "typeorm";
 import {VisitorEntity} from "../visitors/visitors.entity";
 import {UserEntity}    from "../users/users.entity";
-import {TagEntity}     from "src/tags/tags.entity";
+import {TagEntity}     from "../tags/tags.entity";
 
 @Entity({
-    name: "BLOG",
+    name: "BLOG", // DB에 들어갈 이름을 지정해 준다고 보면 됨
 })
 export class BlogEntity extends CommonEntity {
     @Column({

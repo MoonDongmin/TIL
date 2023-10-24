@@ -31,3 +31,6 @@
 
 [섹션 6. 프로젝트 2: 랜덤 채팅 웹 앱(풀스택, 소켓 프로그래밍)](https://www.notion.so/moondongmin/6-2-0f8ba51feab347a6bb414bef96cd2825)
 - 섹션 6에서는 랜덤 채팅 웹을 구현해보는 섹션.
+
+[섹션 7. 프로젝트 3: 백엔드의 꽃 SQL / TypeORM in the Nest](https://www.notion.so/moondongmin/7-3-SQL-TypeORM-in-the-Nest-ff962d67bc4841e6af7cbe01ec11ba8a)
+- 섹션 7에서는 SQL과 TypeORM이 무엇인지에 대해 알아보는 섹션.

@@ -9,7 +9,7 @@ import { Exclude } from 'class-transformer'
 
 export abstract class CommonEntity {
   @IsUUID()
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid') // 기본키를 설정
   id: string
 
   // 해당 열이 추가된 시각을 자동으로 기록
