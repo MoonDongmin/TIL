@@ -11,7 +11,6 @@ public class ProductMain2 {
     printOrders(productOrders);
     int totalAmount = getTotalAmount(productOrders);
     System.out.println("총 결제 금액: " + totalAmount);
-
   }
 
   static ProductOrder createOrder(String productName, int price, int quantity) {
@@ -32,7 +31,9 @@ public class ProductMain2 {
       System.out.println("상품명: " + productOrder.productName + " 가격: " + productOrder.productName +
               " 수량: " + productOrder.quantity);
     }
+
   }
+
 
   static int getTotalAmount(ProductOrder[] orders) {
     int sum = 0;
