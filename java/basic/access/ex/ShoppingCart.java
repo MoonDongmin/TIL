@@ -5,7 +5,7 @@ public class ShoppingCart {
   private int itemCount;
 
   public void addItem(Item item) {
-    if (items.length < itemCount) {
+    if (items.length <= itemCount) {
       System.out.println("장바구니가 가득 찼습니다.");
       return;
     }
@@ -15,12 +15,23 @@ public class ShoppingCart {
 
 
   public void displayItems() {
-    for (Item item : items) {
+    for (int i = 0; i < itemCount; i++) {
+      Item item = items[i];
       System.out.println("상품명: " + item.getName() +
-              ", 합계: " + (item.getPrice() * item.getQuantity()));
+              ", 합계: " + (item.getTotalPrice()));
     }
+    System.out.println("전체 가격 합: " + calculateTotalPrice());
   }
 
-
-
+  private int calculateTotalPrice() {
+    int totalPrice = 0;
+//    for (int i = 0; i < itemCount; i++) {
+//      Item item = items[i];
+//      totalPrice += item.getTotalPrice();
+//    }
+    for (int i = 0; i < itemCount; i++) {
+      totalPrice += items[i].getTotalPrice();
+    }
+    return totalPrice;
+  }
 }

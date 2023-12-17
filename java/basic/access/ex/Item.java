@@ -11,15 +11,21 @@ public class Item {
     this.quantity = quantity;
   }
 
-  public String getName(){
+  public String getName() {
     return name;
   }
 
-  public int getPrice(){
+
+  public int getPrice() {
     return price;
   }
 
-  public int getQuantity(){
+  public int getQuantity() {
     return quantity;
+  }
+
+  // 추가한 로직
+  public int getTotalPrice() {
+    return price * quantity;
   }
 }

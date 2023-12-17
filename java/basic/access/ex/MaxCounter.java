@@ -9,11 +9,18 @@ public class MaxCounter {
   }
 
   public void increment() {
-    if (max > count) {
-      count++;
-    } else {
-      System.out.println("더 이상 증가할 수 없습니다.");
+    // 검증 로직
+    if (count >= max) {
+      System.out.println("최대값을 초과할 수 없습니다.");
+      return;
     }
+    count++;
+    // 내가 짠 코드
+//    if (max > count) {
+//      count++;
+//    } else {
+//      System.out.println("더 이상 증가할 수 없습니다.");
+//    }
   }
 
   public int getCount() {
