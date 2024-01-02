@@ -18,3 +18,4 @@
 ## CS
 ### 디자인 패턴
 - [싱글턴 패턴](https://velog.io/@cook1008/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4)
+- [팩토리 패턴](https://velog.io/@cook1008/%ED%8C%A9%ED%86%A0%EB%A6%AC-%ED%8C%A8%ED%84%B4)
