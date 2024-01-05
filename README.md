@@ -9,7 +9,8 @@
 # 분류
 
 ## Javascript
-- [강타입언어 VS 약타입언어](https://velog.io/@cook1008/%EA%B0%95%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4-VS-%EC%95%BD%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4)
+- [강 타입 언어 VS 약 타입 언어](https://velog.io/@cook1008/%EA%B0%95%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4-VS-%EC%95%BD%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4)
+- [동적 타이핑 VS 정적 타이핑](https://velog.io/@cook1008/%EB%8F%99%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91-VS-%EC%A0%95%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91)
 
 ## NestJS
 - [NestJS란 무엇일까??](https://velog.io/@cook1008/NestJS-%EA%B0%9C%EC%9A%94)
