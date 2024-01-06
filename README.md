@@ -23,3 +23,4 @@
 - [팩토리 패턴](https://velog.io/@cook1008/%ED%8C%A9%ED%86%A0%EB%A6%AC-%ED%8C%A8%ED%84%B4)
 ### 네트워크
 - [네트워크 기초](https://velog.io/@cook1008/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B8%B0%EC%B4%88)
+- [TCP/IP 4계층 모델](https://velog.io/@cook1008/TCPIP-4%EA%B3%84%EC%B8%B5-%EB%AA%A8%EB%8D%B8)
