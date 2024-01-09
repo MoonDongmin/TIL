@@ -26,3 +26,4 @@
 - [TCP/IP 4계층 모델](https://velog.io/@cook1008/TCPIP-4%EA%B3%84%EC%B8%B5-%EB%AA%A8%EB%8D%B8)
 - [네트워크 기기](https://velog.io/@cook1008/3.-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B8%B0%EA%B8%B0)
 - [IP 주소](https://velog.io/@cook1008/IP-%EC%A3%BC%EC%86%8C)
+- [HTTP](https://velog.io/@cook1008/HTTP)
