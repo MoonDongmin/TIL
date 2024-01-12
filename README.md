@@ -12,6 +12,9 @@
 - [강 타입 언어 VS 약 타입 언어](https://velog.io/@cook1008/%EA%B0%95%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4-VS-%EC%95%BD%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4)
 - [동적 타이핑 VS 정적 타이핑](https://velog.io/@cook1008/%EB%8F%99%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91-VS-%EC%A0%95%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91)
 
+## Typescript
+- [unknown 타입이란? ](https://velog.io/@cook1008/unknown-%ED%83%80%EC%9E%85%EC%9D%B4%EB%9E%80)
+
 ## NestJS
 - [NestJS란 무엇일까??](https://velog.io/@cook1008/NestJS-%EA%B0%9C%EC%9A%94)
 - [요청 객체와 응답 객체(req, res)정리](https://velog.io/@cook1008/%EC%9A%94%EC%B2%AD-%EA%B0%9D%EC%B2%B4%EC%99%80-%EC%9D%91%EB%8B%B5-%EA%B0%9D%EC%B2%B4req-res%EC%A0%95%EB%A6%AC)
