@@ -32,3 +32,4 @@
 - [HTTP](https://velog.io/@cook1008/HTTP)
 ### 운영체제
 - [운영체제와 컴퓨터](https://velog.io/@cook1008/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EC%99%80-%EC%BB%B4%ED%93%A8%ED%84%B0)
+- [메모리](https://velog.io/@cook1008/%EB%A9%94%EB%AA%A8%EB%A6%AC)
