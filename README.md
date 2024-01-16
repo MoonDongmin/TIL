@@ -30,6 +30,7 @@
 - [네트워크 기기](https://velog.io/@cook1008/3.-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B8%B0%EA%B8%B0)
 - [IP 주소](https://velog.io/@cook1008/IP-%EC%A3%BC%EC%86%8C)
 - [HTTP](https://velog.io/@cook1008/HTTP)
+- [REST API가 뭘까?](https://velog.io/@cook1008/REST-API)
 ### 운영체제
 - [운영체제와 컴퓨터](https://velog.io/@cook1008/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%EC%99%80-%EC%BB%B4%ED%93%A8%ED%84%B0)
 - [메모리](https://velog.io/@cook1008/%EB%A9%94%EB%AA%A8%EB%A6%AC)
