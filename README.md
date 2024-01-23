@@ -11,6 +11,7 @@
 ## Javascript
 - [강 타입 언어 VS 약 타입 언어](https://velog.io/@cook1008/%EA%B0%95%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4-VS-%EC%95%BD%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4)
 - [동적 타이핑 VS 정적 타이핑](https://velog.io/@cook1008/%EB%8F%99%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91-VS-%EC%A0%95%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91)
+- [iterable? iterator? 알아보자!!](https://velog.io/@cook1008/%EC%9D%B4%ED%84%B0%EB%9F%AC%EB%B8%94-%EC%9D%B4%ED%84%B0%EB%A0%88%EC%9D%B4%ED%84%B0)
 
 ## Typescript
 - [unknown 타입이란? ](https://velog.io/@cook1008/unknown-%ED%83%80%EC%9E%85%EC%9D%B4%EB%9E%80)
