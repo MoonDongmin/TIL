@@ -15,6 +15,7 @@
 
 ## Typescript
 - [unknown 타입이란? ](https://velog.io/@cook1008/unknown-%ED%83%80%EC%9E%85%EC%9D%B4%EB%9E%80)
+- [덕 타이핑 vs 구조적 타이핑](https://velog.io/@cook1008/%EB%8D%95-%ED%83%80%EC%9D%B4%ED%95%91-vs-%EA%B5%AC%EC%A1%B0%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91)
 
 ## NestJS
 - [NestJS란 무엇일까??](https://velog.io/@cook1008/NestJS-%EA%B0%9C%EC%9A%94)
