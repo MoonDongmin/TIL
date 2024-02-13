@@ -2,7 +2,7 @@ package basic.object_oriented;
 
 public class ValueObjectMain {
   public static void main(String[] args) {
-    ValueData valueObject = new ValueData();
+    ValueObject valueObject = new ValueObject();
 
     valueObject.add();
     valueObject.add();
