@@ -1,4 +1,6 @@
-package basic.memory;
+package basic.static1;
+
+import basic.static1.Data1;
 
 public class DataCountMain1 {
   public static void main(String[] args) {

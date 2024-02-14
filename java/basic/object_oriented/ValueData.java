@@ -1,6 +1,6 @@
 package basic.object_oriented;
 
-public class valueObject {
+public class ValueData {
   int value;
 
   void add() {

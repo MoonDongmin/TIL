@@ -1,4 +1,4 @@
-package basic.memory;
+package basic.static1;
 
 public class DataCounterMain3 {
   public static void main(String[] args) {

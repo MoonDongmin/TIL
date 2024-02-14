@@ -1,4 +1,4 @@
-package basic.memory;
+package basic.static1;
 
 public class Data3 {
   public String name;
