@@ -13,6 +13,7 @@ public class DataCounterMain3 {
 
     // 추가
     // 인스턴스를 통한 접근
+    // 별로 추천은 하지 않음 인스턴스 변수인지 헷갈리기 때문
     Data3 data4 = new Data3("D");
     System.out.println(data4.count);
 
