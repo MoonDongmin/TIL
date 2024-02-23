@@ -21,6 +21,8 @@
 - [NestJS란 무엇일까??](https://velog.io/@cook1008/NestJS-%EA%B0%9C%EC%9A%94)
 - [요청 객체와 응답 객체(req, res)정리](https://velog.io/@cook1008/%EC%9A%94%EC%B2%AD-%EA%B0%9D%EC%B2%B4%EC%99%80-%EC%9D%91%EB%8B%B5-%EA%B0%9D%EC%B2%B4req-res%EC%A0%95%EB%A6%AC)
 ## Java
+- [1. 클래스와 데이터](https://www.notion.so/moondongmin/1-4733165a8f604db2bc045a6ddbddd98d)
+- [2. 기본형과 참조형](https://www.notion.so/2-0793cb9e487f4b448b743ee8324360c1?pvs=21)
 
 ## CS
 [IT 인프라가 대체 뭐야...?](https://velog.io/@cook1008/IT-%EC%9D%B8%ED%94%84%EB%9D%BC)
