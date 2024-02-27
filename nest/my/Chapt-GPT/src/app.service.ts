@@ -4,8 +4,10 @@ import * as process from "process";
 
 
 const openai = new OpenAI({
-    organization: `${process.env.GPTID}`,
-    apiKey: `${process.env.GPTKEY}`,
+    // organization: `${process.env.GPTID}`,
+    // apiKey: `${process.env.GPTKEY}`,
+    organization: "org-wCFeV0t98oLq11MO1V5gADP6",
+    apiKey: "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",
 });
 
 
