@@ -26,6 +26,9 @@
 ## SQL
 - [Chapter 01. 레코드 검색](https://www.notion.so/moondongmin/Chapter-01-e037896e55ae4b48a06f1b8114970824)
 
+## Database
+- [DB 인덱스란?](https://velog.io/@cook1008/DB-%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%9E%80)
+
 ## CS
 [IT 인프라가 대체 뭐야...?](https://velog.io/@cook1008/IT-%EC%9D%B8%ED%94%84%EB%9D%BC)
 ### 디자인 패턴
