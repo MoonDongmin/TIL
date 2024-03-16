@@ -29,11 +29,27 @@ CREATE TABLE "User" (
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "Record" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
+    "countty" TEXT NOT NULL,
+    "time" TEXT NOT NULL,
+    "createdAt" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+
+    CONSTRAINT "Record_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Profile_userId_key" ON "Profile"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Record_id_key" ON "Record"("id");
 
 -- AddForeignKey
 ALTER TABLE "Post" ADD CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

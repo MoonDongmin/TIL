@@ -38,3 +38,13 @@ model User {
   posts   Post[]
   profile Profile?
 }
+
+model Record {
+  id        Int    @id @unique @default(autoincrement())
+  title     String
+  state     String
+  countty   String
+  time      String
+  createdAt String
+  content   String
+}
