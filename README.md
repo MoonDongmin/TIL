@@ -18,7 +18,8 @@
 - [덕 타이핑 vs 구조적 타이핑](https://velog.io/@cook1008/%EB%8D%95-%ED%83%80%EC%9D%B4%ED%95%91-vs-%EA%B5%AC%EC%A1%B0%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91)
 
 ## Node.js
--[JavaScript??, ECMAScript??](https://www.notion.so/moondongmin/JavaScript-ECMAScript-ce8875dfd81b4c1591d1dbc9d6683770)
+- [JavaScript??, ECMAScript??](https://velog.io/@cook1008/JavaScript-ECMAScript)
+- [CommonJS vs ES](https://www.notion.so/moondongmin/CommonJS-vs-ES-c26a5ea0704b48f5b1260fa5ca3614ef)
 
 ## NestJS
 - [NestJS란 무엇일까??](https://velog.io/@cook1008/NestJS-%EA%B0%9C%EC%9A%94)
