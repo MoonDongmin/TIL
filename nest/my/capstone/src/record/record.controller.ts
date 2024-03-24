@@ -16,13 +16,18 @@ export class RecordController {
     constructor(private readonly recordService: RecordService) {
     }
 
-    @Post("create")
+    // @Post("create")
+    // async createRecord(@Body() createRecordDTO: CreateRecordDto): Promise<CreateRecordDto> {
+    //     const createToken = await this.recordService.createRecord(createRecordDTO);
+    //
+    //     console.log(createToken);
+    //     return createToken;
+    // }
+    @Get("create")
     async createRecord(@Body() createRecordDTO: CreateRecordDto): Promise<{ createToken: string }> {
-        const createToken = await this.recordService.createRecord(createRecordDTO);
+        const createToken = await this.recordService.recordToken(createRecordDTO);
 
         console.log(createToken);
         return {createToken};
     }
-
-
 }
