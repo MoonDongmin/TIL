@@ -1,12 +1,27 @@
-import {Module}        from "@nestjs/common";
-import {AppController} from "./app.controller";
-import {AppService}    from "./app.service";
-import {UsersModule}   from "./users/users.module";
-import {ConfigModule}  from "@nestjs/config";
-import {TypeOrmModule} from "@nestjs/typeorm";
-import {RecodeModule}  from "./record/recode.module";
-import {Connection}    from "typeorm";
-
+import {
+    Module,
+}               from "@nestjs/common";
+import {
+    AppController,
+}               from "./app.controller";
+import {
+    AppService,
+}               from "./app.service";
+import {
+    UsersModule,
+}               from "./users/users.module";
+import {
+    ConfigModule,
+}               from "@nestjs/config";
+import {
+    TypeOrmModule,
+} from "@nestjs/typeorm";
+import {
+    RecordsModule,
+} from "./record/records.module";
+import {
+    Connection,
+} from "typeorm";
 
 @Module({
     imports: [
@@ -21,7 +36,7 @@ import {Connection}    from "typeorm";
             database: "capstone",
             synchronize: true,
         }),
-        RecodeModule,
+        RecordsModule,
     ],
     controllers: [
         AppController,

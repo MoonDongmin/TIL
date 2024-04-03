@@ -13,31 +13,23 @@ datasource db {
   url      = env("DATA_URL")
 }
 
-// model Post {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   title     String   @db.VarChar(255)
-//   content   String?
-//   published Boolean  @default(false)
-//   author    User     @relation(fields: [authorId], references: [id])
-//   authorId  Int
-// }
-
 model Record {
-  id        Int    @id @unique @default(autoincrement())
-  title     String
-  state     String
-  countty   String
+  id        String   @id @unique @default(uuid())
+  title     String   @db.VarChar(50)
+  state     String   @db.VarChar(20)
+  country   String   @db.VarChar(20)
   time      String
-  createdAt String
-  content   String
+  createdAt DateTime
+  content   String   @db.VarChar(50)
+  image     String[]
   Image     Image?
 }
 
 model Image {
-  id       Int    @id
+  id       String @id
   imageId  Int    @unique @default(autoincrement())
   record   Record @relation(fields: [id], references: [id])
   imageUrl String
 }
+
+// 아이디, 비밀번호만

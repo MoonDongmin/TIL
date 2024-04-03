@@ -1,4 +1,6 @@
-import {IsNotEmpty} from "class-validator";
+import {
+    IsNotEmpty,
+} from "class-validator";
 
 export class CreateRecordDto {
     @IsNotEmpty()
@@ -8,14 +10,17 @@ export class CreateRecordDto {
     "content": string;
 
     @IsNotEmpty()
-    "image": string;
+    "image": string[];
 
     @IsNotEmpty()
-    "location": string;
+    "state":string;
+
+    @IsNotEmpty()
+    "country":string;
 
     @IsNotEmpty()
     "time": string;
 
     @IsNotEmpty()
-    "createdAt": string;
+    "createdAt": Date;
 }

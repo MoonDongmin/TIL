@@ -1,11 +1,11 @@
 -- CreateTable
 CREATE TABLE "Record" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "state" TEXT NOT NULL,
     "countty" TEXT NOT NULL,
     "time" TEXT NOT NULL,
-    "createdAt" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT NOW(),
     "content" TEXT NOT NULL,
 
     CONSTRAINT "Record_pkey" PRIMARY KEY ("id")
@@ -13,7 +13,7 @@ CREATE TABLE "Record" (
 
 -- CreateTable
 CREATE TABLE "Image" (
-    "id" INTEGER NOT NULL,
+    "id" TEXT NOT NULL,
     "imageId" SERIAL NOT NULL,
     "imageUrl" TEXT NOT NULL,
 
