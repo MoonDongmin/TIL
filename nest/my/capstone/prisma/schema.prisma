@@ -13,23 +13,31 @@ datasource db {
   url      = env("DATA_URL")
 }
 
+model User {
+  id       String   @id @unique @default(uuid())
+  email    String   @db.VarChar(50)
+  password String   @db.VarChar(20)
+  nickname String   @db.VarChar(20)
+  Record   Record[]
+}
+
 model Record {
-  id        String   @id @unique @default(uuid())
-  title     String   @db.VarChar(50)
-  state     String   @db.VarChar(20)
-  country   String   @db.VarChar(20)
-  time      String
-  createdAt DateTime
-  content   String   @db.VarChar(50)
-  image     String[]
-  Image     Image?
+  id         String   @id @unique @default(uuid())
+  title      String   @db.VarChar(50)
+  state      String   @db.VarChar(20)
+  country    String   @db.VarChar(20)
+  start_time String
+  end_time   String
+  created_at DateTime
+  content    String   @db.Text
+  user_id    String
+  User       User     @relation(fields: [user_id], references: [id])
+  Image      Image[]
 }
 
 model Image {
-  id       String @id
-  imageId  Int    @unique @default(autoincrement())
-  record   Record @relation(fields: [id], references: [id])
-  imageUrl String
+  id        String @id @unique @default(uuid())
+  image_url String @db.Text
+  record_id String
+  Record    Record @relation(fields: [record_id], references: [id])
 }
-
-// 아이디, 비밀번호만

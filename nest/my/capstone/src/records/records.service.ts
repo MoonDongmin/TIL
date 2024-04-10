@@ -1,10 +1,10 @@
 import {
-    Injectable,
+    Injectable, 
 } from '@nestjs/common';
 
 import {
-    CreateRecordDto, 
-} from './dto/create.record.dto';
+    CreateRecordsDto, 
+} from './dto/create.records.dto';
 
 import {
     PrismaClient, 
@@ -18,19 +18,27 @@ function add9Hours(date: Date): Date {
 
 @Injectable()
 export class RecordsService {
-    async createRecord(createRecordDto: CreateRecordDto): Promise<void> {
+
+    async createRecord(createRecordDto: CreateRecordsDto): Promise<void> {
         const currentDate = new Date();
         const newDate = add9Hours(currentDate);
+        const user = JSON.stringify(await prisma.user.findFirst({
+            select: {
+                id: true,
+            },
+        })).match(/"id":"(.*?)"/)[1];
+
         try {
             await prisma.record.create({
                 data: {
                     title: createRecordDto.title,
-                    content: createRecordDto.content,
-                    image :createRecordDto.image,
                     state: createRecordDto.state,
                     country: createRecordDto.country,
-                    time: createRecordDto.time,
-                    createdAt: newDate,
+                    start_time: createRecordDto.start_time,
+                    end_time: createRecordDto.end_time,
+                    created_at: newDate,
+                    content: createRecordDto.content,
+                    user_id: user,
                 },
             });
             console.log('등록 성공');

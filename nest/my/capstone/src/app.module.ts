@@ -18,7 +18,7 @@ import {
 } from "@nestjs/typeorm";
 import {
     RecordsModule,
-} from "./record/records.module";
+} from "./records/records.module";
 import {
     Connection,
 } from "typeorm";

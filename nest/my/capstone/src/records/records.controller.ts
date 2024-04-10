@@ -11,16 +11,16 @@ import {
     RecordsService,
 } from './records.service';
 import {
-    CreateRecordDto, 
-} from './dto/create.record.dto';
+    CreateRecordsDto,
+} from './dto/create.records.dto';
 
-@Controller('record')
+@Controller('records')
 export class RecordsController {
     constructor(private readonly recordService: RecordsService) {}
 
 	@Post('create')
     async createRecord(
-		@Body() createRecordDTO: CreateRecordDto,
+		@Body() createRecordDTO: CreateRecordsDto,
     ): Promise<void> {
         return await this.recordService.createRecord(createRecordDTO);
     }
