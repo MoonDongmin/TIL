@@ -12,7 +12,8 @@ import {
 } from '@nestjs/typeorm';
 
 @Module({
-    imports: [TypeOrmModule.forFeature(),],
+    imports: [TypeOrmModule.forFeature(),
+    ],
     providers: [RecordsService,],
     controllers: [RecordsController,],
 })

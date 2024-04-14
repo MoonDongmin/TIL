@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id       String   @id @unique @default(uuid())
+  id       String   @id @unique @default(uuid()) @db.Uuid
   email    String   @db.VarChar(50)
   password String   @db.VarChar(20)
   nickname String   @db.VarChar(20)
@@ -22,7 +22,7 @@ model User {
 }
 
 model Record {
-  id         String   @id @unique @default(uuid())
+  id         String   @id @unique @default(uuid()) @db.Uuid
   title      String   @db.VarChar(50)
   state      String   @db.VarChar(20)
   country    String   @db.VarChar(20)
@@ -30,14 +30,14 @@ model Record {
   end_time   String
   created_at DateTime
   content    String   @db.Text
-  user_id    String
+  user_id    String   @db.Uuid
   User       User     @relation(fields: [user_id], references: [id])
   Image      Image[]
 }
 
 model Image {
-  id        String @id @unique @default(uuid())
+  id        String @id @unique @default(uuid()) @db.Uuid
   image_url String @db.Text
-  record_id String
+  record_id String @db.Uuid
   Record    Record @relation(fields: [record_id], references: [id])
 }

@@ -16,7 +16,8 @@ import {
 
 @Controller('records')
 export class RecordsController {
-    constructor(private readonly recordService: RecordsService) {}
+    constructor(private readonly recordService: RecordsService,
+    ) {}
 
 	@Post('create')
     async createRecord(
