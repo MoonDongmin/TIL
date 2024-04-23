@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATA_URL")
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -22,22 +22,21 @@ model User {
 }
 
 model Record {
-  id         String   @id @unique @default(uuid()) @db.Uuid
-  title      String   @db.VarChar(50)
-  state      String   @db.VarChar(20)
-  country    String   @db.VarChar(20)
-  start_time String
-  end_time   String
-  created_at DateTime
-  content    String   @db.Text
-  user_id    String   @db.Uuid
-  User       User     @relation(fields: [user_id], references: [id])
-  Image      Image[]
+  id        String   @id @unique @default(uuid()) @db.Uuid
+  title     String   @db.VarChar(300)
+  location  String   @db.VarChar(40)
+  startTime String   @map("start_time")
+  endTime   String   @map("end_time")
+  createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at")
+  content   String   @db.Text
+  userId    String   @map("user_id") @db.Uuid
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Image     Image[]
 }
 
 model Image {
-  id        String @id @unique @default(uuid()) @db.Uuid
-  image_url String @db.Text
-  record_id String @db.Uuid
-  Record    Record @relation(fields: [record_id], references: [id])
+  id       String @id @unique @default(uuid()) @db.Uuid
+  imageUrl String @map("img_url")
+  recordId String @map("record_id") @db.Uuid
+  Record   Record @relation(fields: [recordId], references: [id], onDelete: Cascade)
 }

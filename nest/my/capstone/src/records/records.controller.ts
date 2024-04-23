@@ -2,27 +2,39 @@ import {
     Body,
     Controller,
     Get,
-    HttpException,
-    HttpStatus,
+    Param,
     Post,
+    Query,
+    UploadedFiles,
+    UseInterceptors,
 } from '@nestjs/common';
 
 import {
-    RecordsService,
+    RecordsService, 
 } from './records.service';
 import {
-    CreateRecordsDto,
+    CreateRecordsDto, 
 } from './dto/create.records.dto';
+import {
+    UploadsService, 
+} from '../uploads/uploads.service';
+import {
+    FilesInterceptor, 
+} from '@nestjs/platform-express';
+import {
+    multerOptions, 
+} from '../utils/multer.options';
 
 @Controller('records')
 export class RecordsController {
-    constructor(private readonly recordService: RecordsService,
-    ) {}
+    constructor(private readonly recordService: RecordsService) {}
 
-	@Post('create')
+	@UseInterceptors(FilesInterceptor('image', 10, multerOptions('images')))
+	@Post('')
     async createRecord(
 		@Body() createRecordDTO: CreateRecordsDto,
+		@UploadedFiles() files: Array<Express.Multer.File>,
     ): Promise<void> {
-        return await this.recordService.createRecord(createRecordDTO);
+        return await this.recordService.createRecord(createRecordDTO, files);
     }
 }

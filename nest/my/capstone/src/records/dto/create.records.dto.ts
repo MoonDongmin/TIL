@@ -7,23 +7,20 @@ export class CreateRecordsDto {
 	'title': string;
 
 	@IsNotEmpty()
-	'state': string;
+	'location': string;
 
 	@IsNotEmpty()
-	'country': string;
+	'startTime': string;
 
 	@IsNotEmpty()
-	'start_time': string;
+	'endTime': string;
 
 	@IsNotEmpty()
-	'end_time': string;
-
-	@IsNotEmpty()
-	'created_at': Date;
+	'createdAt': Date;
 
 	@IsNotEmpty()
 	'content': string;
 
 	@IsNotEmpty()
-	'user_id': string;
+	'userId': string;
 }
