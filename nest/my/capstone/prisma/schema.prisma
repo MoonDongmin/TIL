@@ -31,7 +31,7 @@ model Record {
   content   String   @db.Text
   userId    String   @map("user_id") @db.Uuid
   User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Image     Image[]
+  image     Image[]
 }
 
 model Image {

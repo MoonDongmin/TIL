@@ -14,8 +14,8 @@ import {
     UsersService, 
 } from '../users/users.service';
 import {
-    UploadsService,
-} from "../uploads/uploads.service";
+    UploadsService, 
+} from '../uploads/uploads.service';
 
 @Module({
     imports: [TypeOrmModule.forFeature(),],

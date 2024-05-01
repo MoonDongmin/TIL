@@ -1,11 +1,9 @@
 import {
-    Injectable, UploadedFiles, 
+    Injectable, 
 } from '@nestjs/common';
-
 import {
     CreateRecordsDto, 
 } from './dto/create.records.dto';
-
 import {
     PrismaClient, 
 } from '@prisma/client';
@@ -56,13 +54,21 @@ export class RecordsService {
     // 기록 조회(다)
     async getAllRecords(userId: string): Promise<any> {
         try {
-            await prisma.record.findMany({
+            const records = await prisma.record.findMany({
                 where: {
                     userId: userId,
                 },
+                include: {
+                    image: {
+                        select: {
+                            id: true,
+                            imageUrl: true,
+                        },
+                    },
+                },
             });
 
-            return '찾기 성공';
+            return records;
         } catch (error) {
             // 에러가 발생했을 때 처리할 로직
             console.error('찾기 실패:', error);

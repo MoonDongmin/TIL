@@ -11,7 +11,7 @@ import {
 import {
     DocumentBuilder, SwaggerModule, 
 } from '@nestjs/swagger';
-import * as process from "node:process";
+import * as process from 'node:process';
 import * as expressBasicAuth from 'express-basic-auth';
 
 async function bootstrap(): Promise<void> {
@@ -21,10 +21,10 @@ async function bootstrap(): Promise<void> {
         ['/docs',
             '/docs-json',], expressBasicAuth({
             challenge: true,
-            users:{
-                [process.env.SWAGGER_USER]: process.env.SWAGGER_PASSWARD,
+            users: {
+                [process.env.SWAGGER_USER]: process.env.SWAGGER_PASSWORD,
             },
-        })
+        }),
     );
 
     const config = new DocumentBuilder()

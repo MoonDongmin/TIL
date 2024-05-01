@@ -1,5 +1,5 @@
 import {
-    Controller, Get, 
+    Controller,
 } from '@nestjs/common';
 import {
     AppService, 
@@ -8,5 +8,4 @@ import {
 @Controller()
 export class AppController {
     constructor(private readonly appService: AppService) {}
-
 }

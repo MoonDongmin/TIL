@@ -2,16 +2,13 @@ import {
     IsNotEmpty, 
 } from 'class-validator';
 import {
-    ApiProperty,
-} from "@nestjs/swagger";
-import {
-    Multer,
-} from "multer";
+    ApiProperty, 
+} from '@nestjs/swagger';
 
 export class CreateRecordsDto {
 	@ApiProperty({
 	    example: '플로깅 했어요',
-	    description:'title',
+	    description: 'title',
 	    required: true,
 	})
 	@IsNotEmpty()
@@ -19,7 +16,7 @@ export class CreateRecordsDto {
 
 	@ApiProperty({
 	    example: '경상북도 김천시',
-	    description:'location',
+	    description: 'location',
 	    required: true,
 	})
 	@IsNotEmpty()
@@ -27,7 +24,7 @@ export class CreateRecordsDto {
 
 	@ApiProperty({
 	    example: '2024/04/15-05:36',
-	    description:'startTime',
+	    description: 'startTime',
 	    required: true,
 	})
 	@IsNotEmpty()
@@ -35,29 +32,29 @@ export class CreateRecordsDto {
 
 	@ApiProperty({
 	    example: '2024/04/15-06:33',
-	    description:'endTime',
+	    description: 'endTime',
 	    required: true,
 	})
 	@IsNotEmpty()
 	'endTime': string;
 
 	@ApiProperty({
-	    example: '오늘은 경북 김천시에서 플로깅을 했어요~... 다음에 또 가야지^^',
-	    description:'content',
+	    example:
+			'오늘은 경북 김천시에서 플로깅을 했어요~... 다음에 또 가야지^^',
+	    description: 'content',
 	    required: true,
 	})
 	@IsNotEmpty()
 	'content': string;
 
 	@ApiProperty({
-	    type:'array',
-	    items:{
+	    type: 'array',
+	    items: {
 	        type: 'string',
 	        format: 'binary',
-	    }
-	    ,
+	    },
 	    // example: '[{이미지1.png}, {이미지2.png}]',
-	    description:'image',
+	    description: 'image',
 	    required: true,
 	})
 	@IsNotEmpty()
