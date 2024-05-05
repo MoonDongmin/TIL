@@ -54,10 +54,15 @@ export class UsersService {
     }
 
     async getUserId(): Promise<string> {
-        const user = await prisma.user.findUnique({
-            where: {
-                id: '1666b109-ea53-4db8-8cc7-903c87453425',
-            },
+        // const user = await prisma.user.findUnique({
+        //     where: {
+        //         id: '1666b109-ea53-4db8-8cc7-903c87453425',
+        //     },
+        //     select: {
+        //         id: true,
+        //     },
+        // });
+        const user = await prisma.user.findFirst({
             select: {
                 id: true,
             },

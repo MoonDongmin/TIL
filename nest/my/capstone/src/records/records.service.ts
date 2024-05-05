@@ -1,131 +1,162 @@
 import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Post,
-    Put,
-    UploadedFiles,
-    UseInterceptors,
+    Injectable, 
 } from '@nestjs/common';
 import {
-    RecordsService,
-} from './records.service';
-import {
-    CreateRecordsDto,
+    CreateRecordsDto, 
 } from './dto/create.records.dto';
 import {
-    FilesInterceptor,
-} from '@nestjs/platform-express';
+    PrismaClient, 
+} from '@prisma/client';
 import {
-    multerOptions,
-} from '../utils/multer.options';
+    UsersService, 
+} from '../users/users.service';
 import {
-    ApiBody,
-    ApiCreatedResponse,
-    ApiOperation,
-    ApiParam,
-    ApiTags,
-} from "@nestjs/swagger";
+    UploadsService, 
+} from '../uploads/uploads.service';
 import {
-    RecordsResponseDto,
-} from './dto/records.response.dto';
+    UpdateRecordsDto, 
+} from './dto/update.records.dto';
 
-@Controller('/api/records')
-@ApiTags('Records API')
-export class RecordsController {
-    constructor(private readonly recordService: RecordsService) {}
+const prisma = new PrismaClient();
+
+@Injectable()
+export class RecordsService {
+    constructor(
+		private readonly usersService: UsersService,
+		private readonly uploadService: UploadsService,
+    ) {}
 
     // 기록 생성
-    @UseInterceptors(FilesInterceptor('image', 10, multerOptions('images')))
-    @Post('')
-    @ApiOperation({
-        summary: '기록 생성',
-        description:
-            '기록을 생성할 때는 title, location, startTime, endTime, createdAt, content, image 가 필요',
-    })
-    @ApiCreatedResponse({
-        description: '기록에 대한 고유한 ID 생성함',
-        type: RecordsResponseDto,
-    })
     async createRecord(
-        @Body() createRecordDTO: CreateRecordsDto,
-        @UploadedFiles() files: Array<Express.Multer.File>,
+        createRecordDto: CreateRecordsDto,
+        files: Express.Multer.File[],
     ): Promise<string> {
-        return await this.recordService.createRecord(createRecordDTO, files);
+        const user: string = await this.usersService.getUserId();
+
+        try {
+            const record = await prisma.record.create({
+                data: {
+                    title: createRecordDto.title,
+                    location: createRecordDto.location,
+                    startTime: createRecordDto.startTime,
+                    endTime: createRecordDto.endTime,
+                    content: createRecordDto.content,
+                    userId: user,
+                },
+            });
+            await this.uploadService.uploadImg(files, record.id);
+            console.log('등록 성공');
+
+            return record.id;
+        } catch (error) {
+            console.error('등록 실패', error);
+            throw error;
+        }
     }
 
-    // 기록 다건 조회
-    @Get(':userId')
-    @ApiOperation({
-        summary: '한 명의 사용자에 대한 기록 조회(多)',
-        description:
-            '한 명의 사용자에 대한 모든 기록을 보여줌(지금은 사용자가 한 명이기 때문에 userId가 필요)',
-    })
-    @ApiParam({
-        name: 'userId',
-        type: 'string',
-        description: '(사용자 uuid)1666b109-ea53-4db8-8cc7-903c87453425',
-    })
-    @ApiCreatedResponse({
-        description: '한 명의 사용자에 대한 모든 기록을 보여줌',
-    })
-    async getAllRecords(@Param('userId') param: string): Promise<void> {
-        return await this.recordService.getAllRecords(param);
+    // 기록 조회(다)
+    async getAllRecords(userId: string): Promise<any> {
+        try {
+            const records = await prisma.record.findMany({
+                where: {
+                    userId: userId,
+                },
+                include: {
+                    image: {
+                        select: {
+                            id: true,
+                            imageUrl: true,
+                        },
+                    },
+                },
+            });
+
+            return records;
+        } catch (error) {
+            // 에러가 발생했을 때 처리할 로직
+            console.error('찾기 실패:', error);
+            throw new Error('기록 찾기 실패...');
+        }
     }
 
-    // 기록 단건 조회
-    @Get(':userId/:recordId')
-    @ApiOperation({
-        summary: '한 명의 사용자에 대한 기록 조회(少)',
-        description: '한 명의 사용자에 대한 하나의 기록을 보여줌',
-    })
-    @ApiParam({
-        name: 'userId',
-        type: 'string',
-        description: '(사용자 uuid)1666b109-ea53-4db8-8cc7-903c87453425',
-    })
-    @ApiParam({
-        name: 'recordId',
-        type: 'string',
-        description: '(기록 uuid)1666b109-ea53-4db8-8cc7-903c87453425',
-    })
-    @ApiCreatedResponse({
-        description: '한 명의 사용자에 대한 하나 기록을 보여줌',
-    })
-    async getRecord(
-        @Param('userId') userId: string,
-        @Param('recordId') recordId: string,
-    ):Promise<void> {
-        return await this.recordService.getRecord(userId,recordId);
+    // 기록 조회(단)
+    async getRecord(userId: string, recordId: string): Promise<any> {
+        try {
+            const record = await prisma.record.findUnique({
+                where: {
+                    userId: userId,
+                    id: recordId,
+                },
+                include: {
+                    image: {
+                        select: {
+                            id: true,
+                            imageUrl: true,
+                        },
+                    },
+                },
+            });
+
+            return record;
+        } catch (error) {
+            console.log('찾기 실패: ', error);
+            throw new Error('기록 단건 조회 실패...');
+        }
     }
 
     // 기록 수정
-    @Put()
-    @ApiOperation({
-        summary: '기록에 대한 수정',
-        description: '기록을 수정할 수 있음',
-    })
-    async updateRecord() {
-        return '기록 수정';
+    async setRecord(
+        recordId: string,
+        updateRecordsDto: UpdateRecordsDto,
+    ): Promise<any> {
+        try {
+            const user = await prisma.record.findUnique({
+                where: {
+                    id: recordId,
+                },
+                include: {
+                    User: true,
+                    image: true,
+                },
+            });
+
+            if (!user) {
+                return '기록을 찾을 수 없습니다.';
+            }
+
+            await prisma.record.update({
+                where: {
+                    id: recordId,
+                },
+                data: {
+                    title: updateRecordsDto.title,
+                    location: updateRecordsDto.location,
+                    startTime: updateRecordsDto.startTime,
+                    endTime: updateRecordsDto.endTime,
+                    content: updateRecordsDto.content,
+                },
+            });
+        } catch (error) {
+            console.error(error);
+
+            return '수정 실패';
+        }
     }
 
     // 기록 삭제
-    @Delete(':recordId')
-    @ApiOperation({
-        summary: '기록 삭제',
-        description: '한 명의 사용자에 대한 기록을 지움',
-    })
-    @ApiParam({
-        name: 'recordId',
-        type: 'string',
-        description: '(사용자 uuid)1666b109-ea53-4db8-8cc7-903c87453425',
-    })
-    @ApiCreatedResponse({
-        description: '삭제 성공',
-    })
-    async removeRecord(@Param('recordId') param: string): Promise<any> {
-        return await this.recordService.removeRecord(param);
+    async removeRecord(recordId: string): Promise<string> {
+        try {
+            await prisma.record.delete({
+                where: {
+                    id: recordId,
+                },
+            });
+
+            return '삭제 완료';
+        } catch (error) {
+            // 에러가 발생했을 때 처리할 로직
+            console.error('Error while deleting record:', error);
+            throw new Error('Failed to delete record');
+        }
     }
 }

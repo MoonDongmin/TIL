@@ -31,6 +31,9 @@ import {
 import {
     RecordsResponseDto, 
 } from './dto/records.response.dto';
+import {
+    UpdateRecordsDto,
+} from "./dto/update.records.dto";
 
 @Controller('/api/records')
 @ApiTags('Records API')
@@ -97,18 +100,19 @@ export class RecordsController {
 	async getRecord(
 		@Param('userId') userId: string,
 		@Param('recordId') recordId: string,
-	) {
-	    return '기록 단건 조회';
+	):Promise<void> {
+	    return await this.recordService.getRecord(userId,recordId);
 	}
 
 	// 기록 수정
-	@Put()
+	@Put(':recordId')
 	@ApiOperation({
 	    summary: '기록에 대한 수정',
 	    description: '기록을 수정할 수 있음',
 	})
-	async updateRecord() {
-	    return '기록 수정';
+	async updateRecord(@Param('recordId') recordId: string,
+					   @Body() updateRecordDto: UpdateRecordsDto):Promise<string> {
+	    return await this.recordService.setRecord(recordId, updateRecordDto);
 	}
 
 	// 기록 삭제
