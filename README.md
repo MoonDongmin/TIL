@@ -38,6 +38,7 @@
 ## CS
 - [IT 인프라가 대체 뭐야...?](https://velog.io/@cook1008/IT-%EC%9D%B8%ED%94%84%EB%9D%BC)
 - [클라이언트 서버 아키텍처](https://velog.io/@cook1008/%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8-%EC%84%9C%EB%B2%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98)
+- [CORS란?](https://velog.io/@cook1008/CORS)
 ### 디자인 패턴
 - [싱글턴 패턴](https://velog.io/@cook1008/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4)
 - [팩토리 패턴](https://velog.io/@cook1008/%ED%8C%A9%ED%86%A0%EB%A6%AC-%ED%8C%A8%ED%84%B4)
