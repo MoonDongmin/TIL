@@ -31,7 +31,7 @@ export class RecordsService {
         createRecordDto: CreateRecordsDto,
         files: Express.Multer.File[],
     ): Promise<string> {
-        const user: string = await this.usersService.getUserId();
+        const user: number = await this.usersService.getUserId();
 
         try {
             const record = await prisma.record.create({
@@ -55,7 +55,7 @@ export class RecordsService {
     }
 
     // 기록 조회(다)
-    async getAllRecords(userId: string): Promise<any> {
+    async getAllRecords(userId: number): Promise<any> {
         try {
             const records = await prisma.record.findMany({
                 where: {
@@ -80,7 +80,7 @@ export class RecordsService {
     }
 
     // 기록 조회(단)
-    async getRecord(userId: string, recordId: string): Promise<any> {
+    async getRecord(userId: number, recordId: string): Promise<any> {
         try {
             const record = await prisma.record.findUnique({
                 where: {

@@ -27,13 +27,13 @@ import {
     ApiOperation,
     ApiParam,
     ApiTags,
-} from "@nestjs/swagger";
+} from '@nestjs/swagger';
 import {
     RecordsResponseDto, 
 } from './dto/records.response.dto';
 import {
-    UpdateRecordsDto,
-} from "./dto/update.records.dto";
+    UpdateRecordsDto, 
+} from './dto/update.records.dto';
 
 @Controller('/api/records')
 @ApiTags('Records API')
@@ -74,11 +74,11 @@ export class RecordsController {
 	@ApiCreatedResponse({
 	    description: '한 명의 사용자에 대한 모든 기록을 보여줌',
 	})
-	async getAllRecords(@Param('userId') param: string): Promise<void> {
+	async getAllRecords(@Param('userId') param: number): Promise<void> {
 	    return await this.recordService.getAllRecords(param);
 	}
 
-	// 기록 단건 조회
+	// 기록 단건 조회p
 	@Get(':userId/:recordId')
 	@ApiOperation({
 	    summary: '한 명의 사용자에 대한 기록 조회(少)',
@@ -98,10 +98,10 @@ export class RecordsController {
 	    description: '한 명의 사용자에 대한 하나 기록을 보여줌',
 	})
 	async getRecord(
-		@Param('userId') userId: string,
+		@Param('userId') userId: number,
 		@Param('recordId') recordId: string,
-	):Promise<void> {
-	    return await this.recordService.getRecord(userId,recordId);
+	): Promise<void> {
+	    return await this.recordService.getRecord(userId, recordId);
 	}
 
 	// 기록 수정
@@ -110,8 +110,10 @@ export class RecordsController {
 	    summary: '기록에 대한 수정',
 	    description: '기록을 수정할 수 있음',
 	})
-	async updateRecord(@Param('recordId') recordId: string,
-					   @Body() updateRecordDto: UpdateRecordsDto):Promise<string> {
+	async updateRecord(
+		@Param('recordId') recordId: string,
+		@Body() updateRecordDto: UpdateRecordsDto,
+	): Promise<string> {
 	    return await this.recordService.setRecord(recordId, updateRecordDto);
 	}
 

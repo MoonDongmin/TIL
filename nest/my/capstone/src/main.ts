@@ -15,7 +15,9 @@ import * as process from 'node:process';
 import * as expressBasicAuth from 'express-basic-auth';
 
 async function bootstrap(): Promise<void> {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule);
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+        cors: true,
+    });
 
     app.use(
         ['/docs',

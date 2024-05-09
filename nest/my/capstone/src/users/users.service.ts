@@ -11,8 +11,8 @@ import {
     SigninUserDto, 
 } from './dto/signin.user.dto';
 import {
-    ApiOperation, 
-} from '@nestjs/swagger';
+    response, 
+} from 'express';
 
 const prisma = new PrismaClient();
 
@@ -27,7 +27,8 @@ export class UsersService {
                     nickname: createUserDto.nickname,
                 },
             });
-            console.log('등록 성공');
+
+            return response.status(201);
         } catch (error) {
             console.log('등록 실패', error);
             throw error;
@@ -53,15 +54,7 @@ export class UsersService {
         }
     }
 
-    async getUserId(): Promise<string> {
-        // const user = await prisma.user.findUnique({
-        //     where: {
-        //         id: '1666b109-ea53-4db8-8cc7-903c87453425',
-        //     },
-        //     select: {
-        //         id: true,
-        //     },
-        // });
+    async getUserId(): Promise<number> {
         const user = await prisma.user.findFirst({
             select: {
                 id: true,
@@ -71,14 +64,13 @@ export class UsersService {
         return user.id;
     }
 
-    async deleteUser(id: string): Promise<any> {
+    async deleteUser(id: number): Promise<any> {
         try {
-            await prisma.user.delete({
+            return await prisma.user.delete({
                 where: {
                     id: id,
                 },
             });
-            console.log('삭제 성공');
         } catch (error) {
             console.log('삭제 실패', error);
             throw error;
