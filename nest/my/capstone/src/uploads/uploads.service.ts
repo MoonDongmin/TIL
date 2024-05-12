@@ -26,6 +26,22 @@ export class UploadsService {
     }
 
     // 이미지 수정
-
+    // async updateImg(
+    //     files: Express.Multer.File[],
+    //     imageId: string,
+    // ): Promise<void> {
+    //     for (const file of files) {
+    //         // const fileName = `http://localhost:3000/media/images/${file.filename}`;
+    //         await prisma.image.update({
+    //             where:{
+    //                 id: imageId,
+    //             },
+    //             data: {
+    //                 imageUrl: fileName,
+    //                 recordId: recordId,
+    //             },
+    //         });
+    //     }
+    // }
     // 이미지 삭제
 }

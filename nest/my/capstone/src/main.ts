@@ -37,11 +37,16 @@ async function bootstrap(): Promise<void> {
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('/docs', app, document);
 
-    app.useStaticAssets(path.join(__dirname, './uploads'), {
+    // app.useStaticAssets(path.join(__dirname, './uploads'), {
+    //     prefix: '/media', // 저 media 미들웨어로 접근할 수 있게 추가해준 것
+    // });
+    app.useStaticAssets(path.join(__dirname, '../..', 'src/uploads/'), {
         prefix: '/media', // 저 media 미들웨어로 접근할 수 있게 추가해준 것
     });
 
     await app.listen(3000);
+    console.log(path.join(__dirname, '../..', 'src/uploads/'));
+
 }
 
 bootstrap();

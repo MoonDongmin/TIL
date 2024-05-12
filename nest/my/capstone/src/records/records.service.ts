@@ -124,38 +124,32 @@ export class RecordsService {
     async setRecord(
         recordId: string,
         updateRecordsDto: UpdateRecordsDto,
+        files: Express.Multer.File[],
+        statusCode: HttpStatus = HttpStatus.OK,
     ): Promise<any> {
         try {
-            const user = await prisma.record.findUnique({
+            const updatedRecord = await prisma.record.update({
                 where: {
-                    id: recordId,
-                },
-                include: {
-                    User: true,
-                    image: true,
-                },
-            });
-
-            if (!user) {
-                return "기록을 찾을 수 없습니다.";
-            }
-
-            await prisma.record.update({
-                where: {
-                    id: recordId,
+                    id: recordId, 
                 },
                 data: {
-                    title: updateRecordsDto.title,
+                    title:updateRecordsDto.title,
                     location: updateRecordsDto.location,
+                    content: updateRecordsDto.content,
                     startTime: updateRecordsDto.startTime,
                     endTime: updateRecordsDto.endTime,
-                    content: updateRecordsDto.content,
                 },
             });
-        } catch (error) {
-            console.error(error);
 
-            return "수정 실패";
+            await this.uploadService.uploadImg(files,recordId);
+
+            return {
+                statusCode,
+                updatedRecord,
+            };
+        } catch (error) {
+            console.error('업데이트 실패', error);
+            throw error;
         }
     }
 

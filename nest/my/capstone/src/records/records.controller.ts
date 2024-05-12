@@ -108,6 +108,7 @@ export class RecordsController {
 
 	// 기록 수정
 	@Put(':recordId')
+	@UseInterceptors(FilesInterceptor('images', 5, multerOptions('images')))
 	@ApiOperation({
 	    summary: '기록에 대한 수정',
 	    description: '기록을 수정할 수 있음',
@@ -115,8 +116,9 @@ export class RecordsController {
 	async updateRecord(
 		@Param('recordId') recordId: string,
 		@Body() updateRecordDto: UpdateRecordsDto,
+		@UploadedFiles() files: Array<Express.Multer.File>,
 	): Promise<string> {
-	    return await this.recordService.setRecord(recordId, updateRecordDto);
+	    return await this.recordService.setRecord(recordId, updateRecordDto,files);
 	}
 
 	// 기록 삭제
