@@ -3,9 +3,11 @@ import {
     Controller,
     Delete,
     Get,
+    HttpCode,
     Param,
     Post,
     Put,
+    Res,
     UploadedFiles,
     UseInterceptors,
 } from '@nestjs/common';
@@ -41,7 +43,7 @@ export class RecordsController {
     constructor(private readonly recordService: RecordsService) {}
 
 	// 기록 생성
-	@UseInterceptors(FilesInterceptor('image', 10, multerOptions('images')))
+	@UseInterceptors(FilesInterceptor('images', 5, multerOptions('images')))
 	@Post('')
 	@ApiOperation({
 	    summary: '기록 생성',
@@ -74,11 +76,11 @@ export class RecordsController {
 	@ApiCreatedResponse({
 	    description: '한 명의 사용자에 대한 모든 기록을 보여줌',
 	})
-	async getAllRecords(@Param('userId') param: number): Promise<void> {
-	    return await this.recordService.getAllRecords(param);
+	async getAllRecords(@Param('userId') param: string): Promise<void> {
+	    return await this.recordService.getAllRecords(parseInt(param));
 	}
 
-	// 기록 단건 조회p
+	// 기록 단건 조회
 	@Get(':userId/:recordId')
 	@ApiOperation({
 	    summary: '한 명의 사용자에 대한 기록 조회(少)',
@@ -98,10 +100,10 @@ export class RecordsController {
 	    description: '한 명의 사용자에 대한 하나 기록을 보여줌',
 	})
 	async getRecord(
-		@Param('userId') userId: number,
+		@Param('userId') userId: string,
 		@Param('recordId') recordId: string,
 	): Promise<void> {
-	    return await this.recordService.getRecord(userId, recordId);
+	    return await this.recordService.getRecord(parseInt(userId), recordId);
 	}
 
 	// 기록 수정

@@ -1,36 +1,42 @@
 import {
-    Injectable, 
-} from '@nestjs/common';
+    HttpStatus,
+    Injectable,
+} from "@nestjs/common";
 import {
-    CreateRecordsDto, 
-} from './dto/create.records.dto';
+    CreateRecordsDto,
+} from "./dto/create.records.dto";
 import {
-    PrismaClient, 
-} from '@prisma/client';
+    PrismaClient,
+} from "@prisma/client";
 import {
-    UsersService, 
-} from '../users/users.service';
+    UsersService,
+} from "../users/users.service";
 import {
-    UploadsService, 
-} from '../uploads/uploads.service';
+    UploadsService,
+} from "../uploads/uploads.service";
 import {
-    UpdateRecordsDto, 
-} from './dto/update.records.dto';
+    UpdateRecordsDto,
+} from "./dto/update.records.dto";
+import {
+    response,
+} from "express";
 
 const prisma = new PrismaClient();
 
 @Injectable()
 export class RecordsService {
     constructor(
-		private readonly usersService: UsersService,
-		private readonly uploadService: UploadsService,
-    ) {}
+        private readonly usersService: UsersService,
+        private readonly uploadService: UploadsService,
+    ) {
+    }
 
     // 기록 생성
     async createRecord(
         createRecordDto: CreateRecordsDto,
         files: Express.Multer.File[],
-    ): Promise<string> {
+        statusCode: HttpStatus = HttpStatus.CREATED,
+    ): Promise<any> {
         const user: number = await this.usersService.getUserId();
 
         try {
@@ -45,17 +51,20 @@ export class RecordsService {
                 },
             });
             await this.uploadService.uploadImg(files, record.id);
-            console.log('등록 성공');
+            console.log("등록 성공");
 
-            return record.id;
+            return {
+                statusCode,
+                recordId: record.id,
+            };
         } catch (error) {
-            console.error('등록 실패', error);
+            console.error("등록 실패", error);
             throw error;
         }
     }
 
     // 기록 조회(다)
-    async getAllRecords(userId: number): Promise<any> {
+    async getAllRecords(userId: number, statusCode: HttpStatus = HttpStatus.OK): Promise<any> {
         try {
             const records = await prisma.record.findMany({
                 where: {
@@ -71,16 +80,19 @@ export class RecordsService {
                 },
             });
 
-            return records;
+            return {
+                statusCode,
+                records,
+            };
         } catch (error) {
             // 에러가 발생했을 때 처리할 로직
-            console.error('찾기 실패:', error);
-            throw new Error('기록 찾기 실패...');
+            console.error("찾기 실패:", error);
+            throw new Error("기록 찾기 실패...");
         }
     }
 
     // 기록 조회(단)
-    async getRecord(userId: number, recordId: string): Promise<any> {
+    async getRecord(userId: number, recordId: string, statusCode: HttpStatus = HttpStatus.OK): Promise<any> {
         try {
             const record = await prisma.record.findUnique({
                 where: {
@@ -97,10 +109,14 @@ export class RecordsService {
                 },
             });
 
-            return record;
+            return {
+                statusCode
+                ,
+                record,
+            };
         } catch (error) {
-            console.log('찾기 실패: ', error);
-            throw new Error('기록 단건 조회 실패...');
+            console.log("찾기 실패: ", error);
+            throw new Error("기록 단건 조회 실패...");
         }
     }
 
@@ -121,7 +137,7 @@ export class RecordsService {
             });
 
             if (!user) {
-                return '기록을 찾을 수 없습니다.';
+                return "기록을 찾을 수 없습니다.";
             }
 
             await prisma.record.update({
@@ -139,12 +155,12 @@ export class RecordsService {
         } catch (error) {
             console.error(error);
 
-            return '수정 실패';
+            return "수정 실패";
         }
     }
 
     // 기록 삭제
-    async removeRecord(recordId: string): Promise<string> {
+    async removeRecord(recordId: string, statusCode: HttpStatus = HttpStatus.NO_CONTENT): Promise<any> {
         try {
             await prisma.record.delete({
                 where: {
@@ -152,11 +168,13 @@ export class RecordsService {
                 },
             });
 
-            return '삭제 완료';
+            return {
+                statusCode,
+            };
         } catch (error) {
             // 에러가 발생했을 때 처리할 로직
-            console.error('Error while deleting record:', error);
-            throw new Error('Failed to delete record');
+            console.error("Error:", error);
+            throw new Error("기록 삭제 실패");
         }
     }
 }
