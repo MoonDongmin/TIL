@@ -1,30 +1,38 @@
 import {
-    Body, Controller, Delete, Param, Post, 
-} from '@nestjs/common';
+    Body,
+    Controller,
+    Delete,
+    Param,
+    Post,
+    Patch,
+} from "@nestjs/common";
 import {
     UsersService, 
 } from './users.service';
 import {
-    CreateUserDto, 
-} from './dto/create.user.dto';
+    SignupUserDto,
+} from './dto/signup.user.dto';
 import {
     SigninUserDto, 
 } from './dto/signin.user.dto';
 import {
     ApiOperation, ApiTags, 
 } from '@nestjs/swagger';
+import {
+    UpdateUserDto,
+} from './dto/update.user.dto';
 
 @Controller('/api/users')
 @ApiTags('User API')
 export class UsersController {
     constructor(private readonly userService: UsersService) {}
 
-	@Post()
+	@Post('/signup')
 	@ApiOperation({
 	    summary: '유저 생성',
 	    description: 'id, nickname, email, password로 유저 생성 진행',
 	})
-    async createUser(@Body() createUserDto: CreateUserDto): Promise<void> {
+    async signup(@Body() createUserDto: SignupUserDto): Promise<void> {
         return await this.userService.createUser(createUserDto);
     }
 
@@ -37,12 +45,21 @@ export class UsersController {
 	    return await this.userService.signinUser(signinUserDto);
 	}
 
+	@Patch('')
+	async updateUserNickname(
+		@Body() updateUserDto: UpdateUserDto,
+	): Promise<void> {
+	    return await this.userService.updateUserNickname(
+	        updateUserDto.email, updateUserDto.nickname,
+	    );
+	}
+
 	@Delete('/:id')
 	@ApiOperation({
 	    summary: '유저 삭제',
 	    description: 'id로 유저 삭제',
 	})
 	async deleteUser(@Param('id') id: string): Promise<void> {
-	    return await this.userService.deleteUser(parseInt(id));
+	    return await this.userService.deleteUser(id);
 	}
 }

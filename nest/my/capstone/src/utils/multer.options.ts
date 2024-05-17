@@ -33,10 +33,10 @@ const storage = (folder: string): multer.StorageEngine => {
         destination(req, file, cb) {
             //* 어디에 저장할 지
             // 지금 밑에 있는건 dist 파일에 저장을 하는 것
-            // const folderName = path.join(__dirname, '..', `uploads/${folder}`);
+            const folderName = path.join(__dirname, '..', `uploads/${folder}`);
 
             // 이건 내 로컬에 저장을 하는 것
-            const folderName = path.join(__dirname, '../..', `src/uploads/${folder}`);
+            // const folderName = path.join(__dirname, '../..', `src/uploads/${folder}`);
 
             cb(null, folderName);
         },

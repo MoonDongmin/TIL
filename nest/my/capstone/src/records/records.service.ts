@@ -17,9 +17,6 @@ import {
 import {
     UpdateRecordsDto,
 } from "./dto/update.records.dto";
-import {
-    response,
-} from "express";
 
 const prisma = new PrismaClient();
 
@@ -35,7 +32,7 @@ export class RecordsService {
     async createRecord(
         createRecordDto: CreateRecordsDto,
         files: Express.Multer.File[],
-        statusCode: HttpStatus = HttpStatus.CREATED,
+        // statusCode: HttpStatus = HttpStatus.CREATED,
     ): Promise<any> {
         const user: number = await this.usersService.getUserId();
 
@@ -54,7 +51,7 @@ export class RecordsService {
             console.log("등록 성공");
 
             return {
-                statusCode,
+                // statusCode,
                 recordId: record.id,
             };
         } catch (error) {
@@ -144,7 +141,7 @@ export class RecordsService {
             await this.uploadService.uploadImg(files,recordId);
 
             return {
-                statusCode,
+                // statusCode,
                 updatedRecord,
             };
         } catch (error) {

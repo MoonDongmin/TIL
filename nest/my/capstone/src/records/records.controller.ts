@@ -89,7 +89,7 @@ export class RecordsController {
 	@ApiParam({
 	    name: 'userId',
 	    type: 'string',
-	    description: '(사용자 uuid)1666b109-ea53-4db8-8cc7-903c87453425',
+	    description: '(사용자 id)1',
 	})
 	@ApiParam({
 	    name: 'recordId',

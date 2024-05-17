@@ -1,8 +1,8 @@
 import {
-    IsNotEmpty, 
+    IsNotEmpty,
 } from 'class-validator';
 
-export class CreateUserDto {
+export class SignupUserDto {
 	@IsNotEmpty()
 	'email': string;
 

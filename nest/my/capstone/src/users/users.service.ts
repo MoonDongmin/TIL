@@ -2,8 +2,8 @@ import {
     Injectable, 
 } from '@nestjs/common';
 import {
-    CreateUserDto, 
-} from './dto/create.user.dto';
+    SignupUserDto,
+} from './dto/signup.user.dto';
 import {
     PrismaClient, 
 } from '@prisma/client';
@@ -18,7 +18,7 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class UsersService {
-    async createUser(createUserDto: CreateUserDto): Promise<any> {
+    async createUser(createUserDto: SignupUserDto): Promise<any> {
         try {
             await prisma.user.create({
                 data: {
@@ -64,11 +64,40 @@ export class UsersService {
         return user.id;
     }
 
-    async deleteUser(id: number): Promise<any> {
+    async getUserIdByEmail(email: string): Promise<any> {
+        const user = await prisma.user.findUnique({
+            where: {
+                email: email,
+            },
+            select: {
+                id: true,
+            },
+        });
+
+        return user.id;
+    }
+
+    async updateUserNickname(email: string, nickname: string): Promise<any> {
+        try {
+            return await prisma.user.update({
+                where: {
+                    id: await this.getUserIdByEmail(email),
+                },
+                data: {
+                    nickname: nickname,
+                },
+            });
+        } catch (error) {
+            console.log('업데이트 실패', error);
+            throw error;
+        }
+    }
+
+    async deleteUser(id: string): Promise<any> {
         try {
             return await prisma.user.delete({
                 where: {
-                    id: id,
+                    id: parseInt(id),
                 },
             });
         } catch (error) {

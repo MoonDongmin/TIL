@@ -53,7 +53,7 @@ export class CreateRecordsDto {
 	        type: 'string',
 	        format: 'binary',
 	    },
-	    // example: '[{이미지1.png}, {이미지2.png}]',
+	    example: '[{이미지1.png}, {이미지2.png}]',
 	    description: 'image',
 	    required: true,
 	})
