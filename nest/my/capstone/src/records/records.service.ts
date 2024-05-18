@@ -138,7 +138,7 @@ export class RecordsService {
                 },
             });
 
-            await this.uploadService.uploadImg(files,recordId);
+            await this.uploadService.updateImg(files,recordId);
 
             return {
                 // statusCode,
