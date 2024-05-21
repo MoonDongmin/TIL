@@ -44,7 +44,7 @@ export class RecordsController {
 
 	// 기록 생성
 	@UseInterceptors(FilesInterceptor('images', 5, multerOptions('images')))
-	@Post('')
+	@Post(':userId')
 	@ApiOperation({
 	    summary: '기록 생성',
 	    description:
@@ -57,8 +57,9 @@ export class RecordsController {
     async createRecord(
 		@Body() createRecordDTO: CreateRecordsDto,
 		@UploadedFiles() files: Array<Express.Multer.File>,
+		@Param('userId') userId: string,
     ): Promise<string> {
-        return await this.recordService.createRecord(createRecordDTO, files);
+        return await this.recordService.createRecord(createRecordDTO, files,parseInt(userId));
     }
 
 	// 기록 다건 조회

@@ -7,9 +7,21 @@ import {
 import {
     UsersController, 
 } from './users.controller';
+import {
+    ValidateEmailPipe,
+} from "../pipes/validateEmail.pipe";
+import {
+    ValidatePasswordPipe,
+} from "../pipes/validatePassword.pipe";
+import {
+    ValidateNicknamePipe,
+} from "../pipes/validateNickname.pipe";
 
 @Module({
-    providers: [UsersService,],
+    providers: [UsersService,
+        ValidateEmailPipe,
+        ValidatePasswordPipe,
+        ValidateNicknamePipe,],
     controllers: [UsersController,],
 })
 export class UsersModule {}

@@ -54,9 +54,9 @@ export class CreateRecordsDto {
 	        format: 'binary',
 	    },
 	    example: '[{이미지1.png}, {이미지2.png}]',
-	    description: 'image',
+	    description: 'images',
 	    required: true,
 	})
 	@IsNotEmpty()
-	'image': Express.Multer.File[];
+	'images': Express.Multer.File[];
 }

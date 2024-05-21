@@ -5,12 +5,13 @@ import {
     Param,
     Post,
     Patch,
-} from "@nestjs/common";
+    UsePipes,
+} from '@nestjs/common';
 import {
     UsersService, 
 } from './users.service';
 import {
-    SignupUserDto,
+    SignupUserDto, 
 } from './dto/signup.user.dto';
 import {
     SigninUserDto, 
@@ -19,8 +20,17 @@ import {
     ApiOperation, ApiTags, 
 } from '@nestjs/swagger';
 import {
-    UpdateUserDto,
+    UpdateUserDto, 
 } from './dto/update.user.dto';
+import {
+    ValidatePasswordPipe, 
+} from '../pipes/validatePassword.pipe';
+import {
+    ValidateEmailPipe, 
+} from '../pipes/validateEmail.pipe';
+import {
+    ValidateNicknamePipe, 
+} from '../pipes/validateNickname.pipe';
 
 @Controller('/api/users')
 @ApiTags('User API')
@@ -28,6 +38,7 @@ export class UsersController {
     constructor(private readonly userService: UsersService) {}
 
 	@Post('/signup')
+	@UsePipes(ValidateEmailPipe, ValidatePasswordPipe, ValidateNicknamePipe)
 	@ApiOperation({
 	    summary: '유저 생성',
 	    description: 'id, nickname, email, password로 유저 생성 진행',
