@@ -51,6 +51,7 @@ const storage = (folder: string): multer.StorageEngine => {
             )}${Date.now()}${ext}`;
 
             cb(null, fileName);
+
         },
     });
 };

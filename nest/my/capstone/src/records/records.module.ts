@@ -16,12 +16,16 @@ import {
 import {
     UploadsService, 
 } from '../uploads/uploads.service';
+import {
+    ValidateCreateDtoPipe,
+} from "../pipes/recordsPipes/validateCreateDto.pipe";
 
 @Module({
     imports: [TypeOrmModule.forFeature(),],
     providers: [RecordsService,
         UsersService,
-        UploadsService,],
+        UploadsService,
+        ValidateCreateDtoPipe,],
     controllers: [RecordsController,],
 })
 export class RecordsModule {}

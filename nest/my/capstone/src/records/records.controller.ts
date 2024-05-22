@@ -10,6 +10,7 @@ import {
     Res,
     UploadedFiles,
     UseInterceptors,
+    UsePipes,
 } from '@nestjs/common';
 import {
     RecordsService, 
@@ -36,6 +37,9 @@ import {
 import {
     UpdateRecordsDto, 
 } from './dto/update.records.dto';
+import {
+    ValidateCreateDtoPipe,
+} from "../pipes/recordsPipes/validateCreateDto.pipe";
 
 @Controller('/api/records')
 @ApiTags('Records API')
@@ -55,11 +59,13 @@ export class RecordsController {
 	    type: RecordsResponseDto,
 	})
     async createRecord(
-		@Body() createRecordDTO: CreateRecordsDto,
+		@Body(ValidateCreateDtoPipe) createRecordDTO: CreateRecordsDto,
 		@UploadedFiles() files: Array<Express.Multer.File>,
 		@Param('userId') userId: string,
     ): Promise<string> {
-        return await this.recordService.createRecord(createRecordDTO, files,parseInt(userId));
+        return await this.recordService.createRecord(
+            createRecordDTO, files, parseInt(userId),
+        );
     }
 
 	// 기록 다건 조회
@@ -119,7 +125,9 @@ export class RecordsController {
 		@Body() updateRecordDto: UpdateRecordsDto,
 		@UploadedFiles() files: Array<Express.Multer.File>,
 	): Promise<string> {
-	    return await this.recordService.setRecord(recordId, updateRecordDto,files);
+	    return await this.recordService.setRecord(
+	        recordId, updateRecordDto, files,
+	    );
 	}
 
 	// 기록 삭제

@@ -9,13 +9,13 @@ import {
 } from './users.controller';
 import {
     ValidateEmailPipe,
-} from "../pipes/validateEmail.pipe";
+} from "../pipes/userPipes/validateEmail.pipe";
 import {
     ValidatePasswordPipe,
-} from "../pipes/validatePassword.pipe";
+} from "../pipes/userPipes/validatePassword.pipe";
 import {
     ValidateNicknamePipe,
-} from "../pipes/validateNickname.pipe";
+} from "../pipes/userPipes/validateNickname.pipe";
 
 @Module({
     providers: [UsersService,

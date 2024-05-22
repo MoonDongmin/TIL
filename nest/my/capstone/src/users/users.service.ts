@@ -2,7 +2,7 @@ import {
     Injectable, 
 } from '@nestjs/common';
 import {
-    SignupUserDto,
+    SignupUserDto, 
 } from './dto/signup.user.dto';
 import {
     PrismaClient, 
@@ -44,9 +44,16 @@ export class UsersService {
                 },
             });
             console.log('로그인 성공');
+            const records = await prisma.record.findMany({
+                where: {
+                    userId: user.id,
+                },
+            });
 
             return {
-                user: user.id,
+                id: user.id,
+                nickname: user.nickname,
+                recordIds: records.map((recordId) => recordId.id),
             };
         } catch (error) {
             console.log('로그인 실패', error);

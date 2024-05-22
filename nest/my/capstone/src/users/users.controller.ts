@@ -24,13 +24,13 @@ import {
 } from './dto/update.user.dto';
 import {
     ValidatePasswordPipe, 
-} from '../pipes/validatePassword.pipe';
+} from '../pipes/userPipes/validatePassword.pipe';
 import {
     ValidateEmailPipe, 
-} from '../pipes/validateEmail.pipe';
+} from '../pipes/userPipes/validateEmail.pipe';
 import {
     ValidateNicknamePipe, 
-} from '../pipes/validateNickname.pipe';
+} from '../pipes/userPipes/validateNickname.pipe';
 
 @Controller('/api/users')
 @ApiTags('User API')

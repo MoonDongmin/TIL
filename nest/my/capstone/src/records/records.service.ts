@@ -33,7 +33,6 @@ export class RecordsService {
         createRecordDto: CreateRecordsDto,
         files: Express.Multer.File[],
         user: number,
-        // statusCode: HttpStatus = HttpStatus.CREATED,
     ): Promise<any> {
         // const user: number = await this.usersService.getUserId();
 
