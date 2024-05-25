@@ -43,22 +43,35 @@ const storage = (folder: string): multer.StorageEngine => {
 
         filename(req, file, cb) {
             //* 어떤 이름으로 올릴 지
-
             const ext = path.extname(file.originalname);
+            const baseName = path.basename(file.originalname, ext);
 
-            const fileName = `${path.basename(
-                file.originalname, ext,
-            )}${Date.now()}${ext}`;
+            // const fileName = `${path.basename(
+            //     file.originalname, ext,
+            // )}${Date.now()}${ext}`;
+            const fileName = `${baseName}${ext}`;
 
             cb(null, fileName);
-
         },
     });
+};
+
+const fileFilter = (req: Express.Request, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+    const allowedFileTypes = /jpeg|jpg|png/;
+    const extName = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimeType = allowedFileTypes.test(file.mimetype);
+
+    if (extName && mimeType) {
+        cb(null, true);
+    } else {
+        cb(new Error('Only .jpg, .jpeg, and .png files are allowed!'));
+    }
 };
 
 export const multerOptions = (folder: string) => {
     const result: MulterOptions = {
         storage: storage(folder),
+        fileFilter: fileFilter,
     };
 
     return result;

@@ -9,8 +9,8 @@ const prisma = new PrismaClient();
 
 @Injectable()
 export class ValidateEmailPipe implements PipeTransform {
-    async transform(value: any): Promise<any> {
-        const email = value.email;
+    async transform(value: string): Promise<any> {
+        const email: string = value;
 
         // 이메일 형식 검사
         const emailPattern =
