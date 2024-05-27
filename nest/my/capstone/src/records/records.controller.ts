@@ -22,8 +22,8 @@ import {
     FilesInterceptor, 
 } from '@nestjs/platform-express';
 import {
-    multerOptions, 
-} from '../utils/multer.options';
+    multerOptions,
+} from "../utils/multer.options";
 import {
     ApiBody,
     ApiCreatedResponse,
