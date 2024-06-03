@@ -35,7 +35,6 @@ export class RecordsService {
         user: number,
     ): Promise<any> {
         // const user: number = await this.usersService.getUserId();
-
         try {
             const record = await prisma.record.create({
                 data: {

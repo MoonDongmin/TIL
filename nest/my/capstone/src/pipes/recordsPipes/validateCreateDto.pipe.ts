@@ -7,24 +7,30 @@ import {
 
 @Injectable()
 export class ValidateCreateDtoPipe implements PipeTransform {
-    async transform(value: CreateRecordsDto): Promise<CreateRecordsDto> {
-        const title = value.title;
-        const location = value.location;
-        const content = value.content;
-        const startTime = value.startTime;
-        const endTime = value.endTime;
+    async transform(createRecordsDto: CreateRecordsDto): Promise<CreateRecordsDto> {
+        const title = createRecordsDto.title;
+        const location = createRecordsDto.location;
+        const content = createRecordsDto.content;
+        const startTime = createRecordsDto.startTime;
+        const endTime = createRecordsDto.endTime;
 
-        if (!value || !title) {
+        if (!createRecordsDto) {
+            throw new BadRequestException('정상적인 DTO가 도착하지 않음');
+        }
+
+        if (!title) {
             throw new BadRequestException('제목이 정의되지 않았습니다.');
         }
 
-        if (!value || !location) {
+        if (!location) {
             throw new BadRequestException('위치가 정의되지 않았습니다.');
         }
-        if (!value || !content) {
+
+        if (!content) {
             throw new BadRequestException('내용이 정의되지 않았습니다.');
         }
-        if (!value || !startTime || !endTime) {
+
+        if (!startTime || !endTime) {
             throw new BadRequestException('시간 정의되지 않았습니다.');
         }
 
@@ -44,10 +50,10 @@ export class ValidateCreateDtoPipe implements PipeTransform {
         }
 
         // 글자 수 검사
-        if (startTime.length > 20  || endTime.length > 20) {
+        if (startTime.length > 20 || endTime.length > 20) {
             throw new BadRequestException('시간은 20자 이내여야 합니다.');
         }
 
-        return value;
+        return createRecordsDto;
     }
 }

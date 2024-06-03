@@ -4,20 +4,18 @@ import {
 import {
     PrismaClient, 
 } from '@prisma/client';
+import {
+    SignupUserDto, 
+} from '../../users/dto/signup.user.dto';
 
 const prisma = new PrismaClient();
 
 @Injectable()
 export class ValidateEmailPipe implements PipeTransform {
-    async transform(value: string): Promise<any> {
-        const email: string = value;
+    async transform(signupUserDto: SignupUserDto): Promise<SignupUserDto> {
+        const email: string = signupUserDto.email;
 
-        // 이메일 형식 검사
-        const emailPattern =
-			/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
-        if (!emailPattern.test(email)) {
-            throw new BadRequestException('유효한 이메일 주소여야 합니다.');
-        }
+        console.log(email);
 
         // 빈 문자열인지 검사
         if (email.trim() === '') {
@@ -36,10 +34,16 @@ export class ValidateEmailPipe implements PipeTransform {
             },
         });
 
+        // 이메일 형식 검사
+        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            throw new BadRequestException('유효한 이메일 주소여야 합니다.');
+        }
+
         if (emailExists) {
             throw new BadRequestException('이미 존재하는 이메일입니다.');
         }
 
-        return value;
+        return signupUserDto;
     }
 }
