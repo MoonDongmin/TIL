@@ -8,6 +8,10 @@
 
 # 분류
 
+## BE Roadmaps
+### 1. 인터넷
+- [인터넷의 작동 원리]()
+
 ## Javascript
 - [강 타입 언어 VS 약 타입 언어](https://velog.io/@cook1008/%EA%B0%95%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4-VS-%EC%95%BD%ED%83%80%EC%9E%85%EC%96%B8%EC%96%B4)
 - [동적 타이핑 VS 정적 타이핑](https://velog.io/@cook1008/%EB%8F%99%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91-VS-%EC%A0%95%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91)
@@ -44,6 +48,7 @@
 ### 디자인 패턴
 - [싱글턴 패턴](https://velog.io/@cook1008/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4)
 - [팩토리 패턴](https://velog.io/@cook1008/%ED%8C%A9%ED%86%A0%EB%A6%AC-%ED%8C%A8%ED%84%B4)
+- [DDD(Domain-Driven Design)란?](https://moondongmin.notion.site/DDD-Domain-Driven-Design-e4ac5c875d8e40bfbfeaf5a434cf306a?pvs=4)
 ### 네트워크
 - [네트워크 기초](https://velog.io/@cook1008/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EA%B8%B0%EC%B4%88)
 - [TCP/IP 4계층 모델](https://velog.io/@cook1008/TCPIP-4%EA%B3%84%EC%B8%B5-%EB%AA%A8%EB%8D%B8)
