@@ -1,27 +1,66 @@
-// src/user/user.service.ts
-import { Injectable } from '@nestjs/common';
-import { Repository }     from 'typeorm';
-import {User}             from "./user.entity";
-import {InjectRepository} from "@nestjs/typeorm";
+import {Injectable}   from "@nestjs/common";
+import {PrismaClient} from "@prisma/client";
+import {
+    generateRegistrationOptions,
+    verifyRegistrationResponse,
+}                     from "@simplewebauthn/server";
+import {
+    AuthenticatorTransportFuture,
+    Base64URLString,
+    PublicKeyCredentialCreationOptionsJSON,
+}                     from "@simplewebauthn/types";
+
+const prisma = new PrismaClient();
+const rpName = "Passkey Test";
+const rpID = "localhost";
+const origin = `https://${rpID}`;
+
 
 @Injectable()
 export class UserService {
-    constructor(
-        @InjectRepository(User)
-        private userRepository: Repository<User>,
-    ) {}
+    // get 메서드
+    public async getRegister(userId: number) {
+        const user = await prisma.user.findUnique({
+            where: {id: userId},
+        });
 
-    async createUser(username: string, publicKey: string, credentialId: string) {
-        const user = this.userRepository.create({ username, publicKey, credentialId, counter: 0 });
-        return this.userRepository.save(user);
+        const userPasskeys = await prisma.passkey.findMany({
+            where: {userId: userId},
+
+        });
+
+        const options: PublicKeyCredentialCreationOptionsJSON = await generateRegistrationOptions({
+            rpName,
+            rpID,
+            userName: user.username,
+            // Don't prompt users for additional information about the authenticator
+            // (Recommended for smoother UX)
+            attestationType: "none",
+            // Prevent users from re-registering existing authenticators
+            excludeCredentials: userPasskeys.map(passkey => ({
+                id: passkey.id as Base64URLString,
+                // Optional
+                transports: passkey.transports as AuthenticatorTransportFuture[],
+            })),
+            // See "Guiding use of authenticators via authenticatorSelection" below
+            authenticatorSelection: {
+                // Defaults
+                residentKey: "preferred",
+                userVerification: "preferred",
+                // Optional
+                authenticatorAttachment: "platform",
+            },
+        });
+
+
+        return options;
     }
 
-    async findUserByUsername(username: string): Promise<User | undefined> {
-        return this.userRepository.findOne({ where: { username } });
-    }
+    async postRegister(userId: number) {
+        const user = await prisma.user.findUnique({
+            where: {id: userId},
+        });
 
-    async updateUserCounter(user: User, counter: number) {
-        user.counter = counter;
-        return this.userRepository.save(user);
+        const currentOptions:  PublicKeyCredentialCreationOptionsJSON
     }
 }

@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int       @id @default(autoincrement()) // 기본 사용자 ID, 자동 증가
+  username String    @unique // 사용자 이름, 고유해야 함
+  passkeys Passkey[] // Passkey와의 관계 (1:N)
+}
+
+model Passkey {
+  id             String   @id // Passkey ID, Base64URL 형태의 텍스트
+  publicKey      Bytes // Public Key, Uint8Array가 BLOB 형태로 저장
+  userId         Int // User 모델과 연결될 외래키
+  user           User     @relation(fields: [userId], references: [id]) // 관계 설정
+  webauthnUserID String // WebAuthn에서 사용하는 고유한 사용자 ID, Base64URL
+  counter        BigInt // Authenticator 사용 카운터, BigInt
+  deviceType     String // Device Type, 'singleDevice' 또는 'multiDevice'
+  backedUp       Boolean // 장치가 백업되었는지 여부
+  transports     String[] // 사용된 Authenticator의 전송 방식, CSV 형태로 저장
+}
