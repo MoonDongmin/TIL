@@ -1,14 +1,19 @@
-import {Injectable}   from "@nestjs/common";
-import {PrismaClient} from "@prisma/client";
+import {
+    Injectable,
+    ParseIntPipe,
+}                               from "@nestjs/common";
+import {PrismaClient}           from "@prisma/client";
 import {
     generateRegistrationOptions,
+    VerifiedRegistrationResponse,
     verifyRegistrationResponse,
-}                     from "@simplewebauthn/server";
+}                               from "@simplewebauthn/server";
 import {
     AuthenticatorTransportFuture,
     Base64URLString,
     PublicKeyCredentialCreationOptionsJSON,
-}                     from "@simplewebauthn/types";
+}                               from "@simplewebauthn/types";
+import {PasskeyDto}             from "./passkey.dto";
 
 const prisma = new PrismaClient();
 const rpName = "Passkey Test";
@@ -20,12 +25,10 @@ const origin = `https://${rpID}`;
 export class UserService {
     // get 메서드
     public async getRegister(userId: number) {
-        const user = await prisma.user.findUnique({
-            where: {id: userId},
-        });
+        const user = await this.getUserFromDB(userId);
 
         const userPasskeys = await prisma.passkey.findMany({
-            where: {userId: userId},
+            where: {userId: user.id},
 
         });
 
@@ -56,11 +59,47 @@ export class UserService {
         return options;
     }
 
-    async postRegister(userId: number) {
-        const user = await prisma.user.findUnique({
+    // post 메서드
+    async postRegister(body: any) {
+        // const user = await this.getUserFromDB(userId);
+
+        let verification: VerifiedRegistrationResponse;
+
+        try {
+            verification = await verifyRegistrationResponse({
+                response: body,
+                expectedChallenge: "37CMLwl2H85rWJLnb78uw4iydh0VHcCJ7vo1JGB6HAs",
+                expectedOrigin: origin,
+                expectedRPID: rpID,
+            });
+        } catch (error) {
+            console.error(error);
+        }
+
+        return verification;
+    }
+
+
+    // passkey 등록
+    async registerPasskey(userId: number, passkeyDto: PasskeyDto) {
+        const user = await this.getUserFromDB(userId);
+
+        await prisma.passkey.create({
+            data: {
+                id: passkeyDto.id,
+                publicKey: passkeyDto.credentialPublicKey,
+                webauthnUserID: passkeyDto.credentialID,
+                userId: user.id,
+                counter: passkeyDto.counter,
+                deviceType: passkeyDto.credentialDeviceType,
+                backedUp: passkeyDto.credentialBackedUp,
+            },
+        });
+    }
+
+    async getUserFromDB(userId: number) {
+        return prisma.user.findUnique({
             where: {id: userId},
         });
-
-        const currentOptions:  PublicKeyCredentialCreationOptionsJSON
     }
 }
