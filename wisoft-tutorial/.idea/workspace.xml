@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="99a8537e-0217-4eec-92b9-000fbed020ec" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/src/blogs/blogs.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/src/blogs/blogs.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/src/common/entities/common.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/src/common/entities/common.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/src/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../nest/Section07/typeorm-in-the-nest01/src/users/users.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nest/teaching-nestjs-a-to-z" beforeDir="false" afterPath="$PROJECT_DIR$/../nest/teaching-nestjs-a-to-z" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../practice-frontend/wisoft-tutorial/asset/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/font/Origram.woff" beforeDir="false" afterPath="$PROJECT_DIR$/../practice-frontend/wisoft-tutorial/asset/font/Origram.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/font/Origram.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/../practice-frontend/wisoft-tutorial/asset/font/Origram.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/image/wave.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../practice-frontend/wisoft-tutorial/asset/image/wave.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../practice-frontend/wisoft-tutorial/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2WsgITgD5JVHMLbE7Npdu2wlERB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/moon/Developments/my-study/wisoft-tutorial",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../practice-frontend/wisoft-tutorial" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="99a8537e-0217-4eec-92b9-000fbed020ec" name="Changes" comment="" />
+      <created>1697526621668</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697526621668</updated>
+      <workItem from="1697526622722" duration="280000" />
+      <workItem from="1698053959889" duration="1141000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,19 +1,19 @@
 import {
     Injectable,
     ParseIntPipe,
-}                               from "@nestjs/common";
-import {PrismaClient}           from "@prisma/client";
+}                     from "@nestjs/common";
+import {PrismaClient} from "@prisma/client";
 import {
     generateRegistrationOptions,
     VerifiedRegistrationResponse,
     verifyRegistrationResponse,
-}                               from "@simplewebauthn/server";
+}                     from "@simplewebauthn/server";
 import {
     AuthenticatorTransportFuture,
     Base64URLString,
     PublicKeyCredentialCreationOptionsJSON,
-}                               from "@simplewebauthn/types";
-import {PasskeyDto}             from "./passkey.dto";
+}                     from "@simplewebauthn/types";
+import {PasskeyDto}   from "./passkey.dto";
 
 const prisma = new PrismaClient();
 const rpName = "Passkey Test";
@@ -54,7 +54,6 @@ export class UserService {
                 authenticatorAttachment: "platform",
             },
         });
-
 
         return options;
     }
